@@ -9,17 +9,89 @@
 						"referenceName": "DS_DetailsDestination",
 						"type": "DatasetReference"
 					},
+					"name": "DetailsSource",
+					"description": "Add Details table as source from AzureSql DB"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_EmpDestination",
+						"type": "DatasetReference"
+					},
 					"name": "EmpSource",
 					"description": "Add Employee data as source from AzureSql DB"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DS_DetailsPrepDestination",
+						"type": "DatasetReference"
+					},
+					"name": "SinkDetailsToPrep",
+					"description": "Add prep Details table to DB."
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_EmpPrepDestination",
+						"type": "DatasetReference"
+					},
+					"name": "SinkEmpToPrep",
+					"description": "Add prep employee table to DB."
+				}
+			],
 			"transformations": [],
 			"scriptLines": [
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          id as integer,",
+				"          name as string,",
+				"          description as string,",
+				"          mobile as string,",
+				"          email as string,",
+				"          username as string,",
+				"          dob as date,",
+				"          doj as date,",
+				"          empId as integer,",
+				"          workLocation as string,",
+				"          gender as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> EmpSource"
+				"     format: 'table') ~> DetailsSource",
+				"source(output(",
+				"          id as integer,",
+				"          name as string,",
+				"          designation as string,",
+				"          username as string,",
+				"          password as string,",
+				"          reports_to as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> EmpSource",
+				"DetailsSource sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     recreate:true,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> SinkDetailsToPrep",
+				"EmpSource sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     recreate:true,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> SinkEmpToPrep"
 			]
 		}
 	}

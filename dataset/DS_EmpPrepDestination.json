@@ -1,0 +1,19 @@
+{
+	"name": "DS_EmpPrepDestination",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_toAzureDB",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DS_task_001"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "prep",
+			"table": "employee"
+		}
+	}
+}
