@@ -1,0 +1,16 @@
+{
+	"name": "DestinationDataset_tyt",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_toAzureDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "raw",
+			"table": "employee"
+		}
+	}
+}
