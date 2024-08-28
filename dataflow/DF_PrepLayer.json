@@ -1,0 +1,26 @@
+{
+	"name": "DF_PrepLayer",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_DetailsDestination",
+						"type": "DatasetReference"
+					},
+					"name": "EmpSource",
+					"description": "Add Employee data as source from AzureSql DB"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> EmpSource"
+			]
+		}
+	}
+}

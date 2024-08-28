@@ -1,5 +1,5 @@
 {
-	"name": "PL_copydata_from_postgresDB",
+	"name": "PL_CopyDetailsData",
 	"properties": {
 		"activities": [
 			{
@@ -191,7 +191,7 @@
 			}
 		],
 		"folder": {
-			"name": "PL_task_001"
+			"name": "PL_task_001/PL_CopyDataFromPostgre"
 		},
 		"annotations": []
 	}

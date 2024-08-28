@@ -1,9 +1,12 @@
 {
-	"name": "SourceDataset_tyt",
+	"name": "DS_EmpSource",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "LS_postgres_to_azureDB",
 			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DS_task_001"
 		},
 		"annotations": [],
 		"type": "PostgreSqlV2Table",

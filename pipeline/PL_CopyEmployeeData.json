@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy_tyt",
+				"name": "Copy_details_postgre",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -118,18 +118,21 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SourceDataset_tyt",
+						"referenceName": "DS_EmpSource",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "DestinationDataset_tyt",
+						"referenceName": "DS_EmpDestination",
 						"type": "DatasetReference"
 					}
 				]
 			}
 		],
+		"folder": {
+			"name": "PL_task_001/PL_CopyDataFromPostgre"
+		},
 		"annotations": []
 	}
 }
