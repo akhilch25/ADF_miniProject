@@ -1,0 +1,16 @@
+{
+	"name": "SourceDataset_yxg",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_postgres_to_azureDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "PostgreSqlV2Table",
+		"schema": [],
+		"typeProperties": {
+			"schema": "public",
+			"table": "details"
+		}
+	}
+}
