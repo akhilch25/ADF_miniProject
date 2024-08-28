@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy_yxg",
+				"name": "Copy_details_Postgre",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -178,18 +178,21 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SourceDataset_yxg",
+						"referenceName": "DS_DetailsSource",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "DestinationDataset_yxg",
+						"referenceName": "DS_DetailsDestination",
 						"type": "DatasetReference"
 					}
 				]
 			}
 		],
+		"folder": {
+			"name": "PL_task_001"
+		},
 		"annotations": []
 	}
 }
