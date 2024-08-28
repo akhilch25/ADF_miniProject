@@ -1,0 +1,9 @@
+{
+	"name": "DF-miniProject",
+	"location": "southindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "436f3206-c8a5-41af-9b96-40d62390e0c8",
+		"tenantId": "2800c0a0-70e9-49be-8733-faeaa6aced99"
+	}
+}
