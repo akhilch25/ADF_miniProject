@@ -1,0 +1,16 @@
+{
+	"name": "DestinationDataset_yxg",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_toAzureDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "raw",
+			"table": "details"
+		}
+	}
+}
