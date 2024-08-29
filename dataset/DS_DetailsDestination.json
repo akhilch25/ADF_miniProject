@@ -10,7 +10,53 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"schema": [],
+		"schema": [
+			{
+				"name": "id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "mobile",
+				"type": "nvarchar"
+			},
+			{
+				"name": "email",
+				"type": "nvarchar"
+			},
+			{
+				"name": "username",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dob",
+				"type": "nvarchar"
+			},
+			{
+				"name": "doj",
+				"type": "nvarchar"
+			},
+			{
+				"name": "empId",
+				"type": "nvarchar"
+			},
+			{
+				"name": "workLocation",
+				"type": "nvarchar"
+			},
+			{
+				"name": "gender",
+				"type": "nvarchar"
+			}
+		],
 		"typeProperties": {
 			"schema": "raw",
 			"table": "details"

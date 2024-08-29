@@ -16,7 +16,7 @@
 				"userProperties": [
 					{
 						"name": "Source",
-						"value": "public.details"
+						"value": "public.employee"
 					},
 					{
 						"name": "Destination",
@@ -25,11 +25,17 @@
 				],
 				"typeProperties": {
 					"source": {
-						"type": "PostgreSqlV2Source"
+						"type": "PostgreSqlV2Source",
+						"query": {
+							"value": "SELECT * FROM details WHERE created_at > '2024-08-29 10:50:00' AND created_at IS NOT NULL;",
+							"type": "Expression"
+						}
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"tableOption": "autoCreate"
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
 					"validateDataConsistency": false,

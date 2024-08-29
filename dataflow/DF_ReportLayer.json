@@ -95,7 +95,7 @@
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> EmpSource",
 				"SelectColumns, SelectEmpColumns join(SelectColumns@username == SelectEmpColumns@username,",
-				"     joinType:'outer',",
+				"     joinType:'right',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
 				"     broadcast: 'auto')~> join1",
