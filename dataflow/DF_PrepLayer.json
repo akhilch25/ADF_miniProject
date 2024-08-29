@@ -1,6 +1,9 @@
 {
 	"name": "DF_PrepLayer",
 	"properties": {
+		"folder": {
+			"name": "DF_task_001"
+		},
 		"type": "MappingDataFlow",
 		"typeProperties": {
 			"sources": [
@@ -39,7 +42,12 @@
 					"description": "Add prep employee table to DB."
 				}
 			],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "DerivingAgeExperience",
+					"description": "Creating age, yrs of experience columns from the Details table."
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          id as integer,",
@@ -70,7 +78,9 @@
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> EmpSource",
-				"DetailsSource sink(allowSchemaDrift: true,",
+				"DetailsSource derive(age = year(currentTimestamp())-year(dob),",
+				"          experience = year(currentTimestamp())-year(doj)) ~> DerivingAgeExperience",
+				"DerivingAgeExperience sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     deletable:false,",
 				"     insertable:true,",
