@@ -13,15 +13,142 @@
 						"type": "DatasetReference"
 					},
 					"name": "PrepSource"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_ScrapedDataPrepDestination",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
 				}
 			],
-			"sinks": [],
-			"transformations": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DS_ScrapedDataReportDestination",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_ScrapedDataReportTab_2Destination",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
+				}
+			],
+			"transformations": [
+				{
+					"name": "select1"
+				},
+				{
+					"name": "select2"
+				}
+			],
 			"scriptLines": [
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          category_label as string,",
+				"          subcategory_label as string,",
+				"          subcategory_level_2 as string,",
+				"          item_label as string,",
+				"          subcategory_code as string,",
+				"          department_code as string,",
+				"          category_code as string,",
+				"          category_name as string,",
+				"          search_category_code as string,",
+				"          series_code as string,",
+				"          series_name as string,",
+				"          brand_code as string,",
+				"          brand_url_code as string,",
+				"          brand_name as string,",
+				"          series_status as integer,",
+				"          min_days_to_ship as integer,",
+				"          max_days_to_ship as integer,",
+				"          min_standard_unit_price as double,",
+				"          max_standard_unit_price as double,",
+				"          min_price_per_piece as double,",
+				"          max_price_per_piece as double,",
+				"          avg_price as double",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> PrepSource"
+				"     format: 'table') ~> PrepSource",
+				"source(output(",
+				"          category_label as string,",
+				"          subcategory_label as string,",
+				"          subcategory_level_2 as string,",
+				"          item_label as string,",
+				"          subcategory_code as string,",
+				"          department_code as string,",
+				"          category_code as string,",
+				"          category_name as string,",
+				"          search_category_code as string,",
+				"          series_code as string,",
+				"          series_name as string,",
+				"          brand_code as string,",
+				"          brand_url_code as string,",
+				"          brand_name as string,",
+				"          series_status as integer,",
+				"          min_days_to_ship as integer,",
+				"          max_days_to_ship as integer,",
+				"          min_standard_unit_price as double,",
+				"          max_standard_unit_price as double,",
+				"          min_price_per_piece as double,",
+				"          max_price_per_piece as double,",
+				"          avg_price as double",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source1",
+				"PrepSource select(mapColumn(",
+				"          subcategory_code,",
+				"          category_code,",
+				"          search_category_code,",
+				"          series_code,",
+				"          min_days_to_ship,",
+				"          max_days_to_ship,",
+				"          avg_price",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"source1 select(mapColumn(",
+				"          category_label,",
+				"          subcategory_label,",
+				"          subcategory_level_2,",
+				"          item_label,",
+				"          department_code,",
+				"          category_name,",
+				"          series_name,",
+				"          brand_code,",
+				"          brand_url_code,",
+				"          brand_name,",
+				"          series_status",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select2",
+				"select1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1",
+				"select2 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink2"
 			]
 		}
 	}
