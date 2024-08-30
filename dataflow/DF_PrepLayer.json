@@ -2,7 +2,7 @@
 	"name": "DF_PrepLayer",
 	"properties": {
 		"folder": {
-			"name": "DF_task_001"
+			"name": "DF_Task_001"
 		},
 		"type": "MappingDataFlow",
 		"typeProperties": {

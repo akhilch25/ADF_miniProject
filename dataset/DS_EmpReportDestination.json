@@ -6,7 +6,7 @@
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
-			"name": "DS_task_001"
+			"name": "DS_Task_001"
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
