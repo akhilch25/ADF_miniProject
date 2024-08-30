@@ -1,0 +1,245 @@
+{
+	"name": "DF_PrepLayer_Task_002",
+	"properties": {
+		"folder": {
+			"name": "DF_Task_002"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_ScrapedDataDestination",
+						"type": "DatasetReference"
+					},
+					"name": "RawScrapedSource"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DS_ScrapedDataPrepTab_1Destination",
+						"type": "DatasetReference"
+					},
+					"name": "SinkToPrepLayer1",
+					"description": "Creating Scraped table in Prep Layer"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_ScrapedDataPrepTab_2Destination",
+						"type": "DatasetReference"
+					},
+					"name": "SinkToPrepLayer2"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_ScrapedDataPrepTab_3Destination",
+						"type": "DatasetReference"
+					},
+					"name": "SinkToPrepLayer3"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_ScrapedDataPrepTab_4Destination",
+						"type": "DatasetReference"
+					},
+					"name": "SinkToPrepLayer4"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_ScrapedDataPrepTab_5Destination",
+						"type": "DatasetReference"
+					},
+					"name": "SinkToPrepLayer5"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_ScrapedDataPrepTab_6Destination",
+						"type": "DatasetReference"
+					},
+					"name": "SinkToPrepLayer6"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_ScrapedDataPrepTab_7Destination",
+						"type": "DatasetReference"
+					},
+					"name": "SinkToPrepLayer7"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_ScrapedDataPrepTab_8Destination",
+						"type": "DatasetReference"
+					},
+					"name": "SinkToPrepLayer8"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_ScrapedDataPrepTab_9Destination",
+						"type": "DatasetReference"
+					},
+					"name": "SinkToPrepLayer9"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_ScrapedDataPrepDestination",
+						"type": "DatasetReference"
+					},
+					"name": "SinkToPrepLayer"
+				}
+			],
+			"transformations": [
+				{
+					"name": "DerivedColumnForHandlingNull"
+				},
+				{
+					"name": "split1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          category_label as string,",
+				"          subcategory_label as string,",
+				"          subcategory_level_2 as string,",
+				"          item_label as string,",
+				"          subcategory_code as string,",
+				"          department_code as string,",
+				"          category_code as string,",
+				"          category_name as string,",
+				"          search_category_code as string,",
+				"          series_code as string,",
+				"          series_name as string,",
+				"          brand_code as string,",
+				"          brand_url_code as string,",
+				"          brand_name as string,",
+				"          series_status as integer,",
+				"          min_days_to_ship as integer,",
+				"          max_days_to_ship as integer,",
+				"          min_standard_unit_price as double,",
+				"          max_standard_unit_price as double,",
+				"          min_price_per_piece as double,",
+				"          max_price_per_piece as double",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> RawScrapedSource",
+				"RawScrapedSource derive(min_standard_unit_price = iifNull(min_standard_unit_price, 20),",
+				"          max_standard_unit_price = iifNull(max_standard_unit_price, 40),",
+				"          min_price_per_piece = iifNull(min_price_per_piece,min_standard_unit_price,20),",
+				"          max_price_per_piece = iifNull(max_price_per_piece, max_standard_unit_price, 40),",
+				"          brand_url_code = iifNull(brand_url_code, lower(brand_name), lower(brand_code))) ~> DerivedColumnForHandlingNull",
+				"DerivedColumnForHandlingNull split(subcategory_label=='Automation Components',",
+				"     subcategory_label=='Processing Tools',",
+				"     subcategory_label=='Fasteners',",
+				"     subcategory_label=='Electrical & Controls',",
+				"     subcategory_label=='Wiring Components',",
+				"     subcategory_label=='Machining Tools',",
+				"     subcategory_label=='Material Handling & Storage',",
+				"     subcategory_label=='Press Die Components',",
+				"     disjoint: false) ~> split1@(automationComponents, processingTools, fasteners, electricalControls, wiringComponents, machineTools, materialhandling, pressDieComponents, others)",
+				"split1@automationComponents sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> SinkToPrepLayer1",
+				"split1@processingTools sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> SinkToPrepLayer2",
+				"split1@fasteners sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> SinkToPrepLayer3",
+				"split1@electricalControls sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> SinkToPrepLayer4",
+				"split1@wiringComponents sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> SinkToPrepLayer5",
+				"split1@machineTools sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> SinkToPrepLayer6",
+				"split1@materialhandling sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> SinkToPrepLayer7",
+				"split1@pressDieComponents sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> SinkToPrepLayer8",
+				"split1@others sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> SinkToPrepLayer9",
+				"DerivedColumnForHandlingNull sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     saveOrder: 1,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> SinkToPrepLayer"
+			]
+		}
+	}
+}

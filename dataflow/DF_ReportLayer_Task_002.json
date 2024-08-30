@@ -1,0 +1,28 @@
+{
+	"name": "DF_ReportLayer_Task_002",
+	"properties": {
+		"folder": {
+			"name": "DF_Task_002"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_ScrapedDataPrepDestination",
+						"type": "DatasetReference"
+					},
+					"name": "PrepSource"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> PrepSource"
+			]
+		}
+	}
+}

@@ -1,0 +1,104 @@
+{
+	"name": "DS_ScrapedDataDestination",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_toAzureDB",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DS_Task_002"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "category_label",
+				"type": "nvarchar"
+			},
+			{
+				"name": "subcategory_label",
+				"type": "nvarchar"
+			},
+			{
+				"name": "subcategory_level_2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "item_label",
+				"type": "nvarchar"
+			},
+			{
+				"name": "subcategory_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "department_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "category_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "category_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "search_category_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "series_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "series_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "brand_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "brand_url_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "brand_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "series_status",
+				"type": "nvarchar"
+			},
+			{
+				"name": "min_days_to_ship",
+				"type": "nvarchar"
+			},
+			{
+				"name": "max_days_to_ship",
+				"type": "nvarchar"
+			},
+			{
+				"name": "min_standard_unit_price",
+				"type": "nvarchar"
+			},
+			{
+				"name": "max_standard_unit_price",
+				"type": "nvarchar"
+			},
+			{
+				"name": "min_price_per_piece",
+				"type": "nvarchar"
+			},
+			{
+				"name": "max_price_per_piece",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "raw",
+			"table": "scraped"
+		}
+	}
+}

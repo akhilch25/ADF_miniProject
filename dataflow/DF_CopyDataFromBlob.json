@@ -1,0 +1,91 @@
+{
+	"name": "DF_CopyDataFromBlob",
+	"properties": {
+		"folder": {
+			"name": "DF_Task_002"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_ScrapedDataSource",
+						"type": "DatasetReference"
+					},
+					"name": "ScrapedDataSource"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DS_ScrapedDataDestination",
+						"type": "DatasetReference"
+					},
+					"name": "SinkDataToDB"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          category_label as string,",
+				"          subcategory_label as string,",
+				"          subcategory_level_2 as string,",
+				"          item_label as string,",
+				"          subcategory_code as string,",
+				"          department_code as string,",
+				"          category_code as string,",
+				"          category_name as string,",
+				"          search_category_code as string,",
+				"          series_code as string,",
+				"          series_name as string,",
+				"          brand_code as string,",
+				"          brand_url_code as string,",
+				"          brand_name as string,",
+				"          series_status as string,",
+				"          min_days_to_ship as string,",
+				"          max_days_to_ship as string,",
+				"          min_standard_unit_price as string,",
+				"          max_standard_unit_price as string,",
+				"          min_price_per_piece as string,",
+				"          max_price_per_piece as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> ScrapedDataSource",
+				"ScrapedDataSource sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          category_label as string,",
+				"          subcategory_label as string,",
+				"          subcategory_level_2 as string,",
+				"          item_label as string,",
+				"          subcategory_code as string,",
+				"          department_code as string,",
+				"          category_code as string,",
+				"          category_name as string,",
+				"          search_category_code as string,",
+				"          series_code as string,",
+				"          series_name as string,",
+				"          brand_code as string,",
+				"          brand_url_code as string,",
+				"          brand_name as string,",
+				"          series_status as string,",
+				"          min_days_to_ship as string,",
+				"          max_days_to_ship as string,",
+				"          min_standard_unit_price as string,",
+				"          max_standard_unit_price as string,",
+				"          min_price_per_piece as string,",
+				"          max_price_per_piece as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> SinkDataToDB"
+			]
+		}
+	}
+}

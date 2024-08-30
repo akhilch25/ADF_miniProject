@@ -1,0 +1,19 @@
+{
+	"name": "DS_ScrapedDataPrepTab_1Destination",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_toAzureDB",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DS_Task_002"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "prep",
+			"table": "automationComponents"
+		}
+	}
+}

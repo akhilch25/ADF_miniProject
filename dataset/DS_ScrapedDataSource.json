@@ -1,0 +1,111 @@
+{
+	"name": "DS_ScrapedDataSource",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ToBlob",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DS_Task_002"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "misumi_scraped_data.csv",
+				"container": "st-task-002"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "category_label",
+				"type": "String"
+			},
+			{
+				"name": "subcategory_label",
+				"type": "String"
+			},
+			{
+				"name": "subcategory_level_2",
+				"type": "String"
+			},
+			{
+				"name": "item_label",
+				"type": "String"
+			},
+			{
+				"name": "subcategory_code",
+				"type": "String"
+			},
+			{
+				"name": "department_code",
+				"type": "String"
+			},
+			{
+				"name": "category_code",
+				"type": "String"
+			},
+			{
+				"name": "category_name",
+				"type": "String"
+			},
+			{
+				"name": "search_category_code",
+				"type": "String"
+			},
+			{
+				"name": "series_code",
+				"type": "String"
+			},
+			{
+				"name": "series_name",
+				"type": "String"
+			},
+			{
+				"name": "brand_code",
+				"type": "String"
+			},
+			{
+				"name": "brand_url_code",
+				"type": "String"
+			},
+			{
+				"name": "brand_name",
+				"type": "String"
+			},
+			{
+				"name": "series_status",
+				"type": "String"
+			},
+			{
+				"name": "min_days_to_ship",
+				"type": "String"
+			},
+			{
+				"name": "max_days_to_ship",
+				"type": "String"
+			},
+			{
+				"name": "min_standard_unit_price",
+				"type": "String"
+			},
+			{
+				"name": "max_standard_unit_price",
+				"type": "String"
+			},
+			{
+				"name": "min_price_per_piece",
+				"type": "String"
+			},
+			{
+				"name": "max_price_per_piece",
+				"type": "String"
+			}
+		]
+	}
+}
